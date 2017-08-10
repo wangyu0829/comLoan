@@ -1,11 +1,13 @@
 const readlineSync = require('readline-sync');
 
-let principal = readlineSync.question('请输入借款本金（默认为144000）:') || 144000;    // 借款本金
-let discount =  readlineSync.question('请输入借款利息折扣（默认为0.6）:')  ||(0.6 || 1);        // 分期折扣
-let payFeeRateMonth =readlineSync.question('请输入分期手续费（默认为0.75）:') * 0.01 || (0 || 0.75 * 0.01);  // 分期手续费
-let payFeeRateYear = readlineSync.question('请输入借款年化（默认0）:') ||(0 || 0);             // 借款年化
-let earnFeeRateYear = readlineSync.question('请输入收益年化（默认3.9890）:') * 0.01 || (3.9890 * 0.01) ;       // 收益年化
-let totalMonth =readlineSync.question('请输入分期次数:(默认18)')|| 18;         // 分期次数
+const readlineNumber = (question) => parseFloat(readlineSync.question(question));
+
+let principal = readlineNumber('请输入借款本金（默认为144000）:') || 144000;    // 借款本金
+let discount = readlineNumber('请输入借款利息折扣（默认为0.6）:') || (0.6 || 1);        // 分期折扣
+let payFeeRateMonth = readlineNumber('请输入分期手续费（默认为0.75）:') * 0.01 || (0 || 0.75 * 0.01);  // 分期手续费
+let payFeeRateYear = readlineNumber('请输入借款年化（默认0）:') || (0 || 0);             // 借款年化
+let earnFeeRateYear = readlineNumber('请输入收益年化（默认3.9890）:') * 0.01 || (3.9890 * 0.01);       // 收益年化
+let totalMonth = readlineNumber('请输入分期次数:(默认18)') || 18;         // 分期次数
 
 let payRateMonth = payFeeRateMonth * discount || payFeeRateYear;
 let recRateMonth = earnFeeRateYear / 12;
